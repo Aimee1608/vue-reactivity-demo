@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>观察者模式</title>
+</head>
+
+<body>
+  <script>
+    // 发布者-目标
+    class Dep {
+      subs = []
+      addSub(watcher) {
+        if (watcher && watcher.update) {
+          subs.push(watcher)
+        }
+      }
+      notify() {
+        subs.forEach(item => {
+          item.update()
+        })
+      }
+    }
+    // 观察者
+    class Watcher {
+      updated() {
+        // 更新时需要处理的内容
+      }
+    }
+    // 测试
+    let dep = new Dep()
+    let watcher = new Watcher()
+
+    dep.addSub(watcher)
+
+    dep.notify()
+  </script>
+</body>
+
+</html>
